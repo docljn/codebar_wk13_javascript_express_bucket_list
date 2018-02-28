@@ -12,13 +12,15 @@ const render = function (arrayOfCountries) {
   populateSelectDropdown(arrayOfCountries);
   //TODO: displayAddButton();
   //TODO: displayDeleteButton();
-  //TODO: displayBucketList();
+  // displayBucketList will eventually take an argument provided by the database call....
+  displayBucketList(arrayOfCountries);
 };
 
 const populateSelectDropdown = function (arrayOfCountries) {
   const dropdownDiv = document.querySelector("#dropdown");
   const select = document.createElement("select");
   select.class += " countries";
+  dropdownDiv.appendChild(select);
 
   arrayOfCountries.forEach( function (countryObject, index) {
     countryObject.index = index;
@@ -27,7 +29,18 @@ const populateSelectDropdown = function (arrayOfCountries) {
     option.text = countryObject.name;
     select.appendChild(option);
   });
-  dropdownDiv.appendChild(select);
+};
+
+const displayBucketList = function (arrayOfSelectedCountries) {
+  const bucketDiv = document.querySelector("#bucket");
+  const ul = document.createElement("ul");
+  bucketDiv.appendChild(ul);
+
+  arrayOfSelectedCountries.forEach( function (countryObject) {
+    const li = document.createElement("li");
+    li.innerText = countryObject.name;
+    ul.appendChild(li);
+  });
 };
 
 const makeRequest = function (url, callback) {
