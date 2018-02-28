@@ -6,7 +6,6 @@ const path = require("path");
 // this will eventually route all queries other than the home/index/about through a secondary controller
 
 router.get("/", function (req, res) {
-  console.log(__dirname);
   console.log(res.sendFile(path.join(__dirname + "/../client/build/index.html")));
 });
 
