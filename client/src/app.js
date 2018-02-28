@@ -1,5 +1,5 @@
-const initialize = function () {
-  const url = "https://restcountries.eu/rest/v2/all";
+const appStart = function () {
+  const url = "https://restcountries.eu/rest/v2";
 
 
 
@@ -8,7 +8,27 @@ const initialize = function () {
 
 };
 
+const render = function (arrayOfCountries) {
+  populateSelectDropdown(arrayOfCountries);
+  //TODO: displayAddButton();
+  //TODO: displayDeleteButton();
+  //TODO: displayBucketList();
+};
 
+const populateSelectDropdown = function (arrayOfCountries) {
+  const dropdownDiv = document.querySelector("#dropdown");
+  const select = document.createElement("select");
+  select.class += " countries";
+
+  arrayOfCountries.forEach( function (countryObject, index) {
+    countryObject.index = index;
+    const option = document.createElement("option");
+    option.value = index;
+    option.text = countryObject.name;
+    select.appendChild(option);
+  });
+  dropdownDiv.appendChild(select);
+};
 
 const makeRequest = function (url, callback) {
   const request = new XMLHttpRequest();
@@ -18,19 +38,17 @@ const makeRequest = function (url, callback) {
 };
 
 
-
-
 const requestComplete = function () {
   if (this.status !== 200) return;
   const jsonString = this.responseText;
   const countries = JSON.parse(jsonString);
   // do something with countries so it's accessible to the rest of the page....
-  console.log(countries);
+  render(countries);
 };
 
 
 
 
+window.addEventListener("load", console.log("HELLO"));
 
-
-document.addEventListener("DOMContentLoaded", initialize);
+document.addEventListener("DOMContentLoaded", appStart);
