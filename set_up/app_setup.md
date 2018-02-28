@@ -1,5 +1,5 @@
 # Setting up an Express App from Scratch
-## Terminal commands:
+### Terminal commands to set up files and dependencies
 
 ```
 > curl https://www.gitignore.io/api/node -o .gitignore
@@ -11,6 +11,7 @@
 > git commit -m "Initial Commit"
 > npm init
 > npm install --save-dev webpack
+> npm install webpack-cli -D
 > npm install --save-dev nodemon
 > npm install --save-dev mocha  
 > npm install --save body-parser
@@ -71,7 +72,7 @@ config = {
   output: {
     filename: "bundle.js",
     path: __dirname + "/build"
-  }, // UPDATED
+  },
   devtool: "source-map"
 };
 
@@ -81,3 +82,23 @@ module.exports = config;
 - File structure
 
 ![screenshot of file structure](file_structure.png)
+![screenshot of starting file structure](starting_file_structure.png)
+
+### Express Server
+- To make a basic express server.js file
+
+
+
+### To actually start the app
+
+- In your terminal: one tab per process all run from the root directory of the project i.e. where server.js is found
+
+```
+> npm run webpack (builds .js files)
+> mongod (starts database).
+> mongo (opens database)
+> nodemon server.js (start server to run at local host)
+```
+
+- **NB** closing the terminal does not stop the processes
+- if you get an error when running any of those commands, check the Activity Monitor and kill any process that shouldn't be running
