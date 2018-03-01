@@ -10,8 +10,9 @@ const appStart = function () {
 
 const render = function (arrayOfCountries) {
   populateSelectDropdown(arrayOfCountries);
-  //TODO: displayAddButton();
-  //TODO: displayDeleteButton();
+  displayButton("Add Country");
+  displayButton("Delete Bucket List");
+
   // displayBucketList will eventually take an argument provided by the database call....
   displayBucketList(arrayOfCountries);
 };
@@ -41,6 +42,15 @@ const displayBucketList = function (arrayOfSelectedCountries) {
     li.innerText = countryObject.name;
     ul.appendChild(li);
   });
+};
+
+const displayButton = function (buttonName) {
+  const controlDiv = document.querySelector("#control");
+  const addButton = document.createElement("input");
+  addButton.type = "button";
+  addButton.name = buttonName;
+  addButton.value = buttonName;
+  controlDiv.appendChild(addButton);
 };
 
 const makeRequest = function (url, callback) {
